@@ -1,7 +1,4 @@
-import { useState } from "react";
-
-
-
+import { useEffect, useState, useCallback } from "react";
 
 export interface TextInputProps {
   onTextChange: (text: string) => void;
@@ -9,26 +6,34 @@ export interface TextInputProps {
   initialValue?: string;
 }
 
-export default function TextInput({
+export const TextInput: React.FC<TextInputProps> = ({
   onTextChange,
   placeholder = "Start typing...",
   initialValue = "",
-  }: TextInputProps) {
-  
-    const [text, setText = useState(initialValue)]
+}) => {
+  const [value, setValue] = useState(initialValue);
+  useEffect(() => {
+    onTextChange(value);
+  }, [value, onTextChange]);
 
-    return (
-        <div>
-            <h1>Text Input</h1>
-            <input
-            type="text"
-            placeholder="Type a word"
-            onChange={(e) => onTextChange(e.target.value)}/>
-        </div>
-    )
+  const handleChange = useCallback(
+    (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+      setValue(e.target.value ?? "");
+    },
+    []
+  );
 
- // const id = useId();
- // const [text, setText] = useState<string>(initialValue);
-  //const [stats, setStats] = useState<TextStats>(() => getTextStats(initialValue));
+  return (
+    <div className="w-full">
+      <textarea
+        className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+        placeholder={placeholder}
+        defaultValue={initialValue}
+        onChange={handleChange}
+        rows={6}
+      />
+    </div>
+  );
+};
 
 export default TextInput;

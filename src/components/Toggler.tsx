@@ -1,23 +1,23 @@
-import { useState } from 'react'
+// import { useState } from 'react'
 
 
-function Toggler() {
-    const [isOn, setIsOn] = useState(false);
+// function Toggler() {
+//     const [isOn, setIsOn] = useState(false);
     
     
-    return (
-        <div>
-            <button onClick={() => setIsOn(!isOn)}>Toggle</button>
+//     return (
+//         <div>
+//             <button onClick={() => setIsOn(!isOn)}>Toggle</button>
 
-            <p>Status { isOn ?  'ON' : 'OFF'}</p>
+//             <p>Status { isOn ?  'ON' : 'OFF'}</p>
 
-            {isOn && (
-            <div style={{backgroundColor: 'pink'}}>
-                Lorem ipsum dolor sit amet consectetur,
-            </div>
-          )}
-        </div>
-    );
-}
+//             {isOn && (
+//             <div style={{backgroundColor: 'pink'}}>
+//                 Lorem ipsum dolor sit amet consectetur,
+//             </div>
+//           )}
+//         </div>
+//     );
+// }
 
-export default Toggler;
+// export default Toggler;
